@@ -26,7 +26,7 @@ const AppSelect = ({
     <select
       required={isRequired || required}
       className={clsx(
-        " form-select hover:cursor-pointer border border-black border-opacity-10",
+        " form-select text-xs hover:cursor-pointer border border-black border-opacity-10",
         className
       )}
       {...props}

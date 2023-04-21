@@ -227,6 +227,11 @@ export const AppFormCFDI = () => {
             errors,
             setFieldValue,
             resetForm,
+            handleBlur,
+            touched,
+            initialTouched,
+            setFieldTouched,
+            setTouched,
           }) => {
             return (
               <Form onSubmit={handleSubmit}>
@@ -234,7 +239,7 @@ export const AppFormCFDI = () => {
                   <div className="text-lg  text-primary-600 mb-5 max-sm:text-sm">
                     Ingresa tus datos de Facturación
                   </div>
-                  <div className="grid grid-cols-12 gap-6 max-sm:gap-x-3 max-sm:gap-y-4 bg-white p-5 max-sm:p-5 rounded-lg bg-opacity-30 border border-bg-dark border-opacity-10">
+                  <div className="grid grid-cols-12 gap-4 max-sm:gap-x-3 max-sm:gap-y-2 bg-white p-5 max-sm:p-5 rounded-lg bg-opacity-30 border border-bg-dark border-opacity-10">
                     <AppFormField className="col-span-4 max-sm:col-span-12 flex flex-col">
                       <AppFormLabel>Nombre:</AppFormLabel>
                       <AppTextField
@@ -242,11 +247,14 @@ export const AppFormCFDI = () => {
                         name="Nombre"
                         value={values.Nombre}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       />
-                      {errors.Nombre && (
+                      {touched.Nombre && errors.Nombre && (
                         <AppErrorForm
                           errorName={errors.Nombre}
-                          errorFlag={errors.Nombre ? true : false}
+                          errorFlag={
+                            touched.Nombre && errors.Nombre ? true : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -256,15 +264,20 @@ export const AppFormCFDI = () => {
                         name="TipoPersona"
                         value={values.TipoPersona}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       >
                         <option value={""}>Seleccionar</option>
                         <option value={"PF"}>Persona Física</option>
                         <option value={"PM"}>Persona Moral</option>
                       </AppSelect>
-                      {errors.TipoPersona && (
+                      {touched.TipoPersona && errors.TipoPersona && (
                         <AppErrorForm
                           errorName={errors.TipoPersona}
-                          errorFlag={errors.TipoPersona ? true : false}
+                          errorFlag={
+                            touched.TipoPersona && errors.TipoPersona
+                              ? true
+                              : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -275,11 +288,12 @@ export const AppFormCFDI = () => {
                         name="RFC"
                         value={values.RFC}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       />
-                      {errors.RFC && (
+                      {touched.RFC && errors.RFC && (
                         <AppErrorForm
                           errorName={errors.RFC}
-                          errorFlag={errors.RFC ? true : false}
+                          errorFlag={touched.RFC && errors.RFC ? true : false}
                         />
                       )}
                     </AppFormField>
@@ -332,11 +346,16 @@ export const AppFormCFDI = () => {
                         name="TicketNumber"
                         value={values.TicketNumber}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       />
-                      {errors.TicketNumber && (
+                      {touched.TicketNumber && errors.TicketNumber && (
                         <AppErrorForm
                           errorName={errors.TicketNumber}
-                          errorFlag={errors.TicketNumber ? true : false}
+                          errorFlag={
+                            touched.TicketNumber && errors.TicketNumber
+                              ? true
+                              : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -360,11 +379,16 @@ export const AppFormCFDI = () => {
                         type="number"
                         min={0}
                         step={0.5}
+                        onBlur={handleBlur}
                       />
-                      {errors.TotalAmount && (
+                      {touched.TotalAmount && errors.TotalAmount && (
                         <AppErrorForm
                           errorName={errors.TotalAmount}
-                          errorFlag={errors.TotalAmount ? true : false}
+                          errorFlag={
+                            touched.TotalAmount && errors.TotalAmount
+                              ? true
+                              : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -374,15 +398,18 @@ export const AppFormCFDI = () => {
                         name="ShopPlace"
                         value={values.ShopPlace}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       >
                         <option value="">Seleccionar</option>
                         <option value="1">Coppel</option>
                         <option value="2">Farma Leal tienda en línea</option>
                       </AppSelect>
-                      {errors.ShopPlace && (
+                      {touched.ShopPlace && errors.ShopPlace && (
                         <AppErrorForm
                           errorName={errors.ShopPlace}
-                          errorFlag={errors.ShopPlace ? true : false}
+                          errorFlag={
+                            touched.ShopPlace && errors.ShopPlace ? true : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -392,6 +419,7 @@ export const AppFormCFDI = () => {
                         name="RegFiscal"
                         value={values.RegFiscal}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       >
                         <option value="">Seleccionar</option>
                         {RegimenFiscal.map((item, index) => {
@@ -402,10 +430,12 @@ export const AppFormCFDI = () => {
                           );
                         })}
                       </AppSelect>
-                      {errors.RegFiscal && (
+                      {touched.RegFiscal && errors.RegFiscal && (
                         <AppErrorForm
                           errorName={errors.RegFiscal}
-                          errorFlag={errors.RegFiscal ? true : false}
+                          errorFlag={
+                            touched.RegFiscal && errors.RegFiscal ? true : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -415,6 +445,7 @@ export const AppFormCFDI = () => {
                         name="CFDIUse"
                         value={values.CFDIUse}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       >
                         <option value="">Seleccionar</option>
                         {UsosCFDI.map((item, index) => {
@@ -425,10 +456,12 @@ export const AppFormCFDI = () => {
                           );
                         })}
                       </AppSelect>
-                      {errors.CFDIUse && (
+                      {touched.CFDIUse && errors.CFDIUse && (
                         <AppErrorForm
                           errorName={errors.CFDIUse}
-                          errorFlag={errors.CFDIUse ? true : false}
+                          errorFlag={
+                            touched.CFDIUse && errors.CFDIUse ? true : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -438,6 +471,7 @@ export const AppFormCFDI = () => {
                         name="FormaPago"
                         value={values.FormaPago}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       >
                         <option value="">Seleccionar</option>
                         <option value="1">Efectivo</option>
@@ -448,10 +482,12 @@ export const AppFormCFDI = () => {
                         <option value="4">Monedero Electrónico</option>
                         <option value="5">Tarjeta de Débito</option>
                       </AppSelect>
-                      {errors.FormaPago && (
+                      {touched.FormaPago && errors.FormaPago && (
                         <AppErrorForm
                           errorName={errors.FormaPago}
-                          errorFlag={errors.FormaPago ? true : false}
+                          errorFlag={
+                            touched.FormaPago && errors.FormaPago ? true : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -461,16 +497,21 @@ export const AppFormCFDI = () => {
                         name="MetodoPago"
                         value={values.MetodoPago}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       >
                         <option value="">Seleccionar</option>
                         <option value="PUE">
                           PUE (Pago en una sola exhibición)
                         </option>
                       </AppSelect>
-                      {errors.MetodoPago && (
+                      {touched.MetodoPago && errors.MetodoPago && (
                         <AppErrorForm
                           errorName={errors.MetodoPago}
-                          errorFlag={errors.MetodoPago ? true : false}
+                          errorFlag={
+                            touched.MetodoPago && errors.MetodoPago
+                              ? true
+                              : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -481,11 +522,14 @@ export const AppFormCFDI = () => {
                         name="Calle"
                         value={values.Calle}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       />
-                      {errors.Calle && (
+                      {touched.Calle && errors.Calle && (
                         <AppErrorForm
                           errorName={errors.Calle}
-                          errorFlag={errors.Calle ? true : false}
+                          errorFlag={
+                            touched.Calle && errors.Calle ? true : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -496,11 +540,14 @@ export const AppFormCFDI = () => {
                         name="NumExt"
                         value={values.NumExt}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       />
-                      {errors.NumExt && (
+                      {touched.NumExt && errors.NumExt && (
                         <AppErrorForm
                           errorName={errors.NumExt}
-                          errorFlag={errors.NumExt ? true : false}
+                          errorFlag={
+                            touched.NumExt && errors.NumExt ? true : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -520,11 +567,14 @@ export const AppFormCFDI = () => {
                         name="Colonia"
                         value={values.Colonia}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       />
-                      {errors.Colonia && (
+                      {touched.Colonia && errors.Colonia && (
                         <AppErrorForm
                           errorName={errors.Colonia}
-                          errorFlag={errors.Colonia ? true : false}
+                          errorFlag={
+                            touched.Colonia && errors.Colonia ? true : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -535,11 +585,14 @@ export const AppFormCFDI = () => {
                         name="DelMun"
                         value={values.DelMun}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       />
-                      {errors.DelMun && (
+                      {touched.DelMun && errors.DelMun && (
                         <AppErrorForm
                           errorName={errors.DelMun}
-                          errorFlag={errors.DelMun ? true : false}
+                          errorFlag={
+                            touched.DelMun && errors.DelMun ? true : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -550,11 +603,14 @@ export const AppFormCFDI = () => {
                         name="Estado"
                         value={values.Estado}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       />
-                      {errors.Estado && (
+                      {touched.Estado && errors.Estado && (
                         <AppErrorForm
                           errorName={errors.Estado}
-                          errorFlag={errors.Estado ? true : false}
+                          errorFlag={
+                            touched.Estado && errors.Estado ? true : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -565,11 +621,12 @@ export const AppFormCFDI = () => {
                         name="CP"
                         value={values.CP}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       />
-                      {errors.CP && (
+                      {touched.CP && errors.CP && (
                         <AppErrorForm
                           errorName={errors.CP}
-                          errorFlag={errors.CP ? true : false}
+                          errorFlag={touched.CP && errors.CP ? true : false}
                         />
                       )}
                     </AppFormField>
@@ -580,11 +637,14 @@ export const AppFormCFDI = () => {
                         name="Correo"
                         value={values.Correo}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       />
-                      {errors.Correo && (
+                      {touched.Correo && errors.Correo && (
                         <AppErrorForm
                           errorName={errors.Correo}
-                          errorFlag={errors.Correo ? true : false}
+                          errorFlag={
+                            touched.Correo && errors.Correo ? true : false
+                          }
                         />
                       )}
                     </AppFormField>
@@ -598,6 +658,7 @@ export const AppFormCFDI = () => {
                           const response = await onSubmitHandler(values);
                           if (response) {
                             resetForm();
+                            // setTouched({}, initialTouched);
                           }
                         }}
                         type="submit"

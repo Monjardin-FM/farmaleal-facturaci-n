@@ -16,7 +16,7 @@ export function AppInput<P>(WrappedComponent: React.ComponentType<P>) {
     const componentProps: P = {
       ...(allProps as P),
       className: clsx(
-        "w-full h-12 text-sm font-medium bg-white font-medium appearance-none  rounded-md transition duration-300 text-gray-800 focus:border-primary-400 focus:outline-none py-3 ",
+        "w-full h-10 text-sm font-medium bg-white font-medium appearance-none  rounded-md transition duration-300 text-gray-800 focus:border-primary-400 focus:outline-none py-3 ",
         {
           "pl-12": props.leftIcon,
           "pl-4": !props.leftIcon,
